@@ -1,0 +1,5 @@
+spring:
+  jpa:
+    show-sq: true
+server:
+  port: 8081

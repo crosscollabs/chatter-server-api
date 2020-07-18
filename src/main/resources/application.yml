@@ -5,6 +5,7 @@ spring:
     password: chatter
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
+    generate-ddl: true
     show-sq: true
 server:
   port: 8081

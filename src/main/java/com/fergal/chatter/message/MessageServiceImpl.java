@@ -44,4 +44,12 @@ public class MessageServiceImpl implements MessageService{
 		return outboxRepositoryService.getAllOutboxItemsForUser(id);
 	}
 
+
+	@Override
+	public boolean deleteDeliveredMessage(long messageId) {
+		outboxRepositoryService.deleteOutboxItem(messageId);
+		return true;
+		
+	}
+
 }

@@ -20,7 +20,7 @@ public class Conversation {
 	private long id;
 	
 	private String conversationName;
-	
+
 	private long user1;
 	
 	private long user2;

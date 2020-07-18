@@ -11,6 +11,8 @@ public interface MessageService {
 	
 	public boolean sendMessage(Message message);
 	
-	public List<OutboxItem> getAllMessagesForUser(long id);
+	public List<OutboxItem> getAllMessagesForUser(long userId);
+	
+	public boolean deleteDeliveredMessage(long messageId);
 
 }

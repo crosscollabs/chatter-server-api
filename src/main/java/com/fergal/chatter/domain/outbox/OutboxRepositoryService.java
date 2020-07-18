@@ -34,6 +34,10 @@ public class OutboxRepositoryService{
 		return outboxRepository.findAllByRecipientId(userId);
 	}
 	
+	public void deleteOutboxItem(long messageId) {
+		outboxRepository.deleteById(messageId);
+	}
+	
 	public void deleteAll() {
 		outboxRepository.deleteAll();
 	}

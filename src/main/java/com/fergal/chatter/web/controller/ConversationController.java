@@ -3,6 +3,7 @@ package com.fergal.chatter.web.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,13 +30,13 @@ public class ConversationController {
 	}
 	
 	@GetMapping("/{id}")
-	public ConversationDto getConversation(long id) {
+	public ConversationDto getConversation(@PathVariable long id) {
 		return conversationManagement.getConversation(id);
 		
 	}
 	
 	@GetMapping("/user/all/{id}")
-	public  List<ConversationDto> getAllConversationsForUser(long id){
+	public  List<ConversationDto> getAllConversationsForUser(@PathVariable long id){
 		return conversationManagement.getAllConversationsForUserId(id);
 		
 	}

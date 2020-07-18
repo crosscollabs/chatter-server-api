@@ -180,12 +180,5 @@ public class Conversation {
 		user9 = membersArray.get(8);
 		user10 = membersArray.get(9);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

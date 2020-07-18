@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.fergal.chatter.conversations.ConversationManagement;
@@ -23,6 +24,7 @@ import com.fergal.chatter.domain.conversation.ConversationRepositoryService;
 import com.fergal.chatter.domain.outbox.OutboxItem;
 import com.fergal.chatter.domain.outbox.OutboxRepositoryService;
 import com.fergal.chatter.domain.user.UserRepositoryService;
+import com.fergal.chatter.dto.ConversationDto;
 import com.fergal.chatter.dto.ConversationRequest;
 import com.fergal.chatter.message.Message;
 import com.fergal.chatter.message.MessageService;
@@ -31,6 +33,7 @@ import com.fergal.chatter.users.UserManagement;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
+@ActiveProfiles("test")
 class BasicMessageFlowTests {
 	
 	@Autowired
@@ -78,9 +81,10 @@ class BasicMessageFlowTests {
 		//create a conversation with both users
 		long conversationId = conversationManagement.createConversation(conversationRequest);
 		
-		Conversation conversation = conversationManagement.getConversation(conversationId);
+		ConversationDto conversation = conversationManagement.getConversation(conversationId);
 		
-		assertTrue(conversation.getAllUsers().containsAll(allUsers));
+		List<Long> allFoundUsers = conversation.getAllUsers();
+		assertTrue(allFoundUsers.containsAll(allUsers));
 		
 		//send a message from one user to the conversation.
 		Message message = new Message(conversationId,userid1,MESSAGE_CONTENT,Priority.MEDIUM);

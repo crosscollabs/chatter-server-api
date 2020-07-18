@@ -28,7 +28,4 @@ public class ConversationRequest {
 	public void setConversationName(String conversationName) {
 		this.conversationName = conversationName;
 	}
-	
-	
-
 }

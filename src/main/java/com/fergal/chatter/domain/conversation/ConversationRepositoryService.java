@@ -1,6 +1,7 @@
 package com.fergal.chatter.domain.conversation;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -41,6 +42,10 @@ public class ConversationRepositoryService {
 	
 	public Optional<Conversation> getConversation(long id){
 		return conversationRepository.findById(id);
+	}
+	
+	public List<Conversation> getAllCoversationsForUser(long id){
+		return conversationRepository.findAllConversationsForUserId(id);
 	}
 	
 	public void deleteAll() {

@@ -98,7 +98,7 @@ class BasicMessageFlowTests {
 		assertEquals(Priority.MEDIUM, outboxItems.get(0).getPriority());
 		
 		List<OutboxItem> senderItems = outboxRepositoryService.getAllOutboxItemsForUser(userid1);
-		assertEquals(0, senderItems.size());
+		assertEquals(1, senderItems.size());
 	}
 
 }

@@ -3,7 +3,6 @@ package com.fergal.chatter.message;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -29,14 +28,11 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public boolean sendMessage(Message message) {
 		Set<Long> recipients = new HashSet<>();
-		recipients.addAll(conversationManagement.getConversation(message.getTargetConversationId()).
-				getAllUsers()
-				.stream().filter(u-> u!=message.getSenderId())
-				.collect(Collectors.toList()));
+		recipients.addAll(conversationManagement.getConversation(message.getConversationId()).
+				getAllUsers());
 		
-		return outboxRepositoryService.createOutboxItems(message.getTargetConversationId(), recipients, message.getSenderId(),
+		return outboxRepositoryService.createOutboxItems(message.getConversationId(), recipients, message.getSenderId(),
 				message.getContent(), message.getPriority());
-		
 	}
 
 	@Override
@@ -49,7 +45,5 @@ public class MessageServiceImpl implements MessageService{
 	public boolean deleteDeliveredMessage(long messageId) {
 		outboxRepositoryService.deleteOutboxItem(messageId);
 		return true;
-		
 	}
-
 }

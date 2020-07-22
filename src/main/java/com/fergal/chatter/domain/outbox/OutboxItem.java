@@ -1,5 +1,7 @@
 package com.fergal.chatter.domain.outbox;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,18 +27,21 @@ public class OutboxItem {
 	
 	private long senderId;
 	
+	private Timestamp timestamp;
+	
 	@Enumerated(EnumType.STRING)
 	private Priority priority;
 	
 	public OutboxItem() {}
 	
-	public OutboxItem(long conversationId,long senderId,long recipientId, String messageContent, Priority priority) {
+	public OutboxItem(long conversationId,long senderId,long recipientId, String messageContent, Priority priority, Timestamp timestamp) {
 		super();
 		this.recipientId = recipientId;
 		this.senderId=senderId;
 		this.conversationId = conversationId;
 		this.messageContent = messageContent;
 		this.priority = priority;
+		this.timestamp = timestamp;
 	}
 	
 
@@ -87,12 +92,12 @@ public class OutboxItem {
 	public void setPriority(Priority priority) {
 		this.priority = priority;
 	}
-	
-	
-	
-	
-	
-	
-	
 
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
 }

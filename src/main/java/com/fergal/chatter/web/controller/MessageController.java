@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +25,7 @@ public class MessageController {
 	}
 	
 	@PostMapping("/send")
-	public boolean sendMessage(Message message) {
+	public boolean sendMessage(@RequestBody Message message) {
 		return messageService.sendMessage(message);
 	}
 	
@@ -33,7 +34,7 @@ public class MessageController {
 		return messageService.getAllMessagesForUser(id);
 	}
 	
-	@GetMapping("/delete/{id}")
+	@GetMapping("/delete/{messageId}")
 	public boolean deleteDeliveredItem(@PathVariable long messageId) {
 		return messageService.deleteDeliveredMessage(messageId);
 	}

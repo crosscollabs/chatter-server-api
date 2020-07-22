@@ -1,6 +1,5 @@
 package com.fergal.chatter.domain.conversation;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -23,20 +22,6 @@ public class ConversationRepositoryService {
 		
 		conversation = conversationRepository.save(conversation);
 		return conversation.getId();
-		
-	}
-	
-	public void addUsersToConversation(Set<Long> newMembers, long conversationId) {
-		
-		Conversation conversation = conversationRepository.findById(conversationId).get();
-		
-		Set<Long> discreteMembers = new HashSet<>();
-		discreteMembers.addAll(newMembers);
-		discreteMembers.addAll(conversation.getAllUsers());
-		
-		conversation.setAllUsers(discreteMembers);
-		
-		conversationRepository.save(conversation);
 		
 	}
 	

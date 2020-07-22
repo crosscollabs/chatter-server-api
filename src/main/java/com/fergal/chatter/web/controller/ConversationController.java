@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fergal.chatter.conversations.ConversationManagement;
-import com.fergal.chatter.domain.conversation.Conversation;
 import com.fergal.chatter.dto.ConversationDto;
 import com.fergal.chatter.dto.ConversationRequest;
 
@@ -24,7 +24,7 @@ public class ConversationController {
 	}
 	
 	@PostMapping("/create")
-	public long createConversation(ConversationRequest conversationRequest) {
+	public long createConversation(@RequestBody ConversationRequest conversationRequest) {
 		return conversationManagement.createConversation(conversationRequest);
 		
 	}

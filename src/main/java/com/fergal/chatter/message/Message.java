@@ -1,5 +1,7 @@
 package com.fergal.chatter.message;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.stream.Stream;
 
 import javax.persistence.GeneratedValue;
@@ -29,28 +31,32 @@ public class Message {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	private long targetConversationId;
+	private long conversationId;
 	
 	private long senderId;
 	
 	private String content;
 	
 	private Priority priority;
-
 	
-	public Message(long targetConversationId, long senderId, String content, Priority priority) {
-		this.targetConversationId = targetConversationId;
+	private Timestamp timestamp;
+
+	public Message() {}
+	
+	public Message(long conversationId, long senderId, String content, Priority priority) {
+		this.conversationId = conversationId;
 		this.senderId = senderId;
 		this.content = content;
 		this.priority = priority;
+		this.timestamp = Timestamp.from(Instant.now());
 	}
 
-	public long getTargetConversationId() {
-		return targetConversationId;
+	public long getConversationId() {
+		return conversationId;
 	}
 
-	public void setTargetConversationId(long targetConversationId) {
-		this.targetConversationId = targetConversationId;
+	public void setConversationId(long targetConversationId) {
+		this.conversationId = targetConversationId;
 	}
 
 	public long getSenderId() {
@@ -80,6 +86,12 @@ public class Message {
 	public void setPriority(Priority priority) {
 		this.priority = priority;
 	}
+
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+	
+	
 	
 	
 

@@ -8,6 +8,8 @@ public class ConversationRequest {
 	
 	private String conversationName;
 	
+	public ConversationRequest() {}
+	
 	public ConversationRequest(List<Long> members, String conversationName) {
 		this.members = members;
 		this.conversationName = conversationName;

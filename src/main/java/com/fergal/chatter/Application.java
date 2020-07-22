@@ -1,7 +1,7 @@
 package com.fergal.chatter;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.lang.reflect.Method;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,11 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.fergal.chatter.conversations.ConversationManagement;
-import com.fergal.chatter.domain.user.User;
-import com.fergal.chatter.dto.ConversationRequest;
-import com.fergal.chatter.message.Message;
 import com.fergal.chatter.message.MessageService;
-import com.fergal.chatter.message.Message.Priority;
 import com.fergal.chatter.users.UserManagement;
 
 @SpringBootApplication

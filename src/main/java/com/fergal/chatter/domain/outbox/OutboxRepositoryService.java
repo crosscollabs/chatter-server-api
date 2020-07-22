@@ -1,5 +1,7 @@
 package com.fergal.chatter.domain.outbox;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.Set;
 
@@ -19,9 +21,10 @@ public class OutboxRepositoryService{
 	
 	public boolean createOutboxItems(long conversationId,Set<Long> recipients, long senderId, String content, Priority priority) {
 		
+		Timestamp timestamp = Timestamp.from(Instant.now());
 		for( long recipientId : recipients) {
 			
-			OutboxItem outboxItem = new OutboxItem(conversationId,senderId,recipientId,content,priority);
+			OutboxItem outboxItem = new OutboxItem(conversationId,senderId,recipientId,content,priority,timestamp);
 			
 			outboxRepository.save(outboxItem);
 		}
